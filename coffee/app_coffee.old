@@ -1,0 +1,20 @@
+window = Ti.UI.createWindow
+  backgroundColor:'black'
+
+quicktigame2d = require 'com.googlecode.quicktigame2d'
+
+game = quicktigame2d.createGameView()
+scene = quicktigame2d.createScene()
+sprite = quicktigame2d.createSprite
+  image:'graphics/flare.png'
+
+scene.add sprite
+game.pushScene scene
+game.addEventListener 'onload',(e)->
+  game.start()
+
+window.add game
+window.open
+  fullscreen:true
+  navBarHidden:true
+

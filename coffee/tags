@@ -1,0 +1,129 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Map	app.coffee	/^Map = require('map').Map$/;"	v
+MapTile	map_old.coffee	/^  MapTile = require('map_tile').MapTile$/;"	v
+Pad	app.coffee	/^Pad = require('pad').Pad$/;"	v
+Player	app.coffee	/^Player = require('player').Player$/;"	v
+backaroudColor	app.coffee	/^  backaroudColor:'red'$/;"	v
+collisionData	map_old.coffee	/^    collisionData:[[]]$/;"	v
+data	map_old.coffee	/^    data:[[]]$/;"	v
+down	pad.coffee	/^          down:true$/;"	v
+down	pad.coffee	/^        down:false$/;"	v
+down	pad.coffee	/^      down:false$/;"	v
+down	pad.coffee	/^    down:false$/;"	v
+exports.Map	map.coffee	/^exports.Map = (_mapfile)->$/;"	f
+exports.Map	map_old.coffee	/^exports.Map = ->$/;"	f
+exports.MapTile	map_tile.coffee	/^exports.MapTile = ->$/;"	f
+exports.Pad	pad.coffee	/^exports.Pad = ->$/;"	f
+exports.Player	player.coffee	/^exports.Player = ->$/;"	f
+fireIntervalEvent	app.coffee	/^fireIntervalEvent = (event)->$/;"	f
+fullscreen	app.coffee	/^  fullscreen:true$/;"	v
+game	app.coffee	/^game = quicktigame2d.createGameView()$/;"	v
+game.debug	app.coffee	/^game.debug = true$/;"	v
+game.fps	app.coffee	/^game.fps = GAME_FPS$/;"	v
+game.frame	app.coffee	/^game.frame = 0$/;"	v
+game.screen	app.coffee	/^  game.screen = $/;"	v
+height	map_old.coffee	/^      height = self.height$/;"	v
+height	map_old.coffee	/^    height:0$/;"	v
+height	map_tile.coffee	/^    height:16$/;"	v
+height	pad.coffee	/^    height:100$/;"	v
+height	player.coffee	/^    height:32$/;"	v
+hitTest	map_old.coffee	/^    hitTest:(x, y)->$/;"	f
+left	pad.coffee	/^          left:true$/;"	v
+left	pad.coffee	/^        left:false$/;"	v
+left	pad.coffee	/^      left:false$/;"	v
+left	pad.coffee	/^    left:false$/;"	v
+leng	map.coffee	/^    leng = self.width \/ self.tileWidth$/;"	v
+map.vx	app.coffee	/^            map.vx = vx$/;"	v
+map.vx	app.coffee	/^    map.vx = 0$/;"	v
+map.vy	app.coffee	/^            map.vy = vy$/;"	v
+map.vy	app.coffee	/^    map.vy = 0$/;"	v
+map.z	app.coffee	/^map.z = 0$/;"	v
+mapinfo	map.coffee	/^  mapinfo =$/;"	v
+navBarHidden	app.coffee	/^  navBarHidden:true$/;"	v
+nextMapX	app.coffee	/^      nextMapX    = map.old_x$/;"	v
+nextMapX	app.coffee	/^    nextMapX    = 0$/;"	v
+nextMapX	app.coffee	/^nextMapX    = 0$/;"	v
+nextMapY	app.coffee	/^      nextMapY    = map.old_y$/;"	v
+nextMapY	app.coffee	/^    nextMapY    = 0$/;"	v
+nextMapY	app.coffee	/^nextMapY    = 0$/;"	v
+nextPlayerX	app.coffee	/^      nextPlayerX = player.old_x + player.width*(vx \/ (Math.abs vx))$/;"	v
+nextPlayerX	app.coffee	/^      nextPlayerX = player.old_x$/;"	v
+nextPlayerX	app.coffee	/^    nextPlayerX = 0$/;"	v
+nextPlayerX	app.coffee	/^nextPlayerX = 0$/;"	v
+nextPlayerY	app.coffee	/^      nextPlayerY = player.old_y + player.height*(vy \/ (Math.abs vy))$/;"	v
+nextPlayerY	app.coffee	/^      nextPlayerY = player.old_y$/;"	v
+nextPlayerY	app.coffee	/^    nextPlayerY = 0$/;"	v
+nextPlayerY	app.coffee	/^nextPlayerY = 0$/;"	v
+pad.z	app.coffee	/^pad.z = 2$/;"	v
+player.direction	app.coffee	/^      player.direction = 0$/;"	v
+player.direction	app.coffee	/^      player.direction = 1$/;"	v
+player.direction	app.coffee	/^      player.direction = 2$/;"	v
+player.direction	app.coffee	/^      player.direction = 3$/;"	v
+player.isMoving	app.coffee	/^            player.isMoving = true$/;"	v
+player.isMoving	app.coffee	/^          player.isMoving = true$/;"	v
+player.isMoving	app.coffee	/^      player.isMoving = false$/;"	v
+player.isMoving	app.coffee	/^player.isMoving = false$/;"	v
+player.vx	app.coffee	/^          player.vx = vx$/;"	v
+player.vx	app.coffee	/^    player.vx = 0$/;"	v
+player.vy	app.coffee	/^          player.vy = vy$/;"	v
+player.vy	app.coffee	/^    player.vy = 0$/;"	v
+player.walk	app.coffee	/^      player.walk = 1$/;"	v
+player.z	app.coffee	/^player.z = 1$/;"	v
+redraw	map_old.coffee	/^    redraw:(_scale, _scene)->$/;"	f
+right	pad.coffee	/^          right:true$/;"	v
+right	pad.coffee	/^        right:false$/;"	v
+right	pad.coffee	/^      right:false$/;"	v
+right	pad.coffee	/^    right:false$/;"	v
+screenScale	app.coffee	/^  screenScale = game.width \/ 320$/;"	v
+self	map_old.coffee	/^  self = $/;"	v
+self	map_tile.coffee	/^  self = quicktigame2d.createSpriteSheet$/;"	v
+self	pad.coffee	/^  self = quicktigame2d.createSpriteSheet$/;"	v
+self	player.coffee	/^  self = quicktigame2d.createSpriteSheet$/;"	v
+self.check	pad.coffee	/^  self.check = (x, y, game)->$/;"	f
+self.clear	pad.coffee	/^  self.clear = ()->$/;"	f
+self.collisionData	map.coffee	/^  self.collisionData = []$/;"	v
+self.destroy	player.coffee	/^  self.destroy = false$/;"	v
+self.direction	player.coffee	/^  self.direction = 0$/;"	v
+self.frame	map_tile.coffee	/^  self.frame = 0$/;"	v
+self.frame	pad.coffee	/^  self.frame = 0$/;"	v
+self.frame	player.coffee	/^  self.frame = 0$/;"	v
+self.hitTest	map.coffee	/^  self.hitTest = (x, y)->$/;"	f
+self.input	pad.coffee	/^        self.input =$/;"	v
+self.input	pad.coffee	/^      self.input =$/;"	v
+self.input	pad.coffee	/^    self.input =$/;"	v
+self.input	pad.coffee	/^  self.input =$/;"	v
+self.isMoving	player.coffee	/^  self.isMoving = false$/;"	v
+self.loadCollisionData	map.coffee	/^  self.loadCollisionData = ->$/;"	f
+self.redraw	map_tile.coffee	/^  self.redraw = (scene)->$/;"	f
+self.tileHeight	map_old.coffee	/^            self.tileHeight = tile_i_j.height$/;"	v
+self.tileWidth	map_old.coffee	/^            self.tileWidth = tile_i_j.width$/;"	v
+self.vx	player.coffee	/^  self.vx = 0$/;"	v
+self.vy	player.coffee	/^  self.vy = 0$/;"	v
+self.walk	player.coffee	/^  self.walk = 0$/;"	v
+self.x	pad.coffee	/^  self.x = 0$/;"	v
+self.x	player.coffee	/^  self.x = 0$/;"	v
+self.y	pad.coffee	/^  self.y = 0$/;"	v
+self.y	player.coffee	/^  self.y = 0$/;"	v
+tileHeight	map_old.coffee	/^      tileHeight = self.tileHeight || height$/;"	v
+tileHeight	map_old.coffee	/^    tileHeight:0$/;"	v
+tileWidth	map_old.coffee	/^      tileWidth = self.tileWidth || width$/;"	v
+tileWidth	map_old.coffee	/^    tileWidth:0$/;"	v
+up	pad.coffee	/^          up:true$/;"	v
+up	pad.coffee	/^        up:false$/;"	v
+up	pad.coffee	/^      up:false$/;"	v
+up	pad.coffee	/^    up:false$/;"	v
+updatePad	app.coffee	/^updatePad = ->$/;"	f
+vx	app.coffee	/^      vx = 4$/;"	v
+vx	app.coffee	/^    vx = 0$/;"	v
+vy	app.coffee	/^      vy = 4$/;"	v
+vy	app.coffee	/^    vy = 0$/;"	v
+width	map_old.coffee	/^      width = self.width$/;"	v
+width	map_old.coffee	/^    width:0$/;"	v
+width	map_tile.coffee	/^    width:16$/;"	v
+width	pad.coffee	/^    width:100$/;"	v
+width	player.coffee	/^    width:32$/;"	v
