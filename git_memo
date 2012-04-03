@@ -1,0 +1,6 @@
+git init
+# write .gitignore file 
+git add <files>
+git status
+git commit -m "...."
+git push <Repository:(ex.TiQuest)> master
