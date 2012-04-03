@@ -1,4 +1,4 @@
-var GAME_FPS, Map, Pad, Player, SCREEN_HEIGHT, SCREEN_WIDTH, WINDOW_SCALE_FACTOR_X, WINDOW_SCALE_FACTOR_Y, clearMaps, fireIntervalEvent, game, map, mapjson, maps, nextMapX, nextMapY, nextPlayerX, nextPlayerY, pad, player, quicktigame2d, scene, updateMaps, updatePad, win;
+var GAME_FPS, Map, Pad, Player, SCREEN_HEIGHT, SCREEN_WIDTH, TestScene, WINDOW_SCALE_FACTOR_X, WINDOW_SCALE_FACTOR_Y, clearMaps, fireIntervalEvent, game, label1, map, mapjson, maps, nextMapX, nextMapY, nextPlayerX, nextPlayerY, pad, player, quicktigame2d, scene, testScene, updateMaps, updatePad, view1, win;
 SCREEN_WIDTH = 320;
 SCREEN_HEIGHT = 480;
 GAME_FPS = 30;
@@ -13,6 +13,8 @@ game.debug = true;
 game.frame = 0;
 scene = quicktigame2d.createScene();
 scene.color(1, 1, 1);
+TestScene = require('testScene').testScene;
+testScene = new TestScene(game);
 maps = [];
 mapjson = "";
 Map = require('map').Map;
@@ -59,7 +61,7 @@ nextPlayerY = 0;
 nextMapX = 0;
 nextMapY = 0;
 player.isMoving = false;
-game.pushScene(scene);
+game.pushScene(testScene);
 game.addEventListener('onload', function(e) {
   var screenScale;
   screenScale = game.width / 320;
@@ -112,6 +114,45 @@ fireIntervalEvent = function(event) {
   }, 1000 / game.fps);
 };
 win.add(game);
+view1 = Ti.UI.createView({
+  backgroundColor: 'brown',
+  width: game.width,
+  height: 50,
+  bottom: 0,
+  borderColor: 'white',
+  borderWidth: 2.0,
+  opacity: 0.8
+});
+label1 = Ti.UI.createLabel({
+  color: 'black',
+  text: 'hide label',
+  font: {
+    fontSize: 15,
+    fontFamily: 'Helvetica Neue'
+  },
+  textAlign: 'center',
+  width: game.width - 20,
+  height: 'auto',
+  left: 10,
+  bottom: 0,
+  opacity: 0.8
+});
+label1.addEventListener('touchstart', function(e) {
+  Ti.API.info("lavel1 touchstart");
+  game.zIndex = 2;
+  view1.zIndex = 1;
+  return game.pushScene(scene);
+});
+label1.addEventListener('touchend', function(e) {
+  Ti.API.info("lavel1 touchend");
+  game.zIndex = 1;
+  return view1.zIndex = 2;
+});
+view1.addEventListener('touchstart', function(e) {
+  return Ti.API.info("view1 touchstart");
+});
+view1.add(label1);
+win.add(view1);
 win.open({
   fullscreen: true,
   navBarHidden: true

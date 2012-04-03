@@ -26,6 +26,9 @@ game.frame = 0
 scene = quicktigame2d.createScene()
 scene.color 1, 1, 1
 
+TestScene = require('testScene').testScene
+testScene = new TestScene(game)
+
 maps = []
 mapjson = ""
 Map = require('map').Map
@@ -76,7 +79,8 @@ nextMapX    = 0
 nextMapY    = 0
 player.isMoving = false
 
-game.pushScene scene
+#game.pushScene scene
+game.pushScene testScene
 
 game.addEventListener 'onload',(e)->
   #Titanium.UI.orientation = Titanium.UI.LANDSCAPE_RIGHT
@@ -139,51 +143,53 @@ fireIntervalEvent = (event)->
 
 win.add game
 
-#view1 = Ti.UI.createView
-#  backgroundColor:'brown'
-#  #width:game.screen.width
-#  width:game.width
-#  height:50
-#  bottom:0
-#  borderColor:'white'
-#  borderWidth:2.0
-#  opacity:0.8
-#
-#label1 = Ti.UI.createLabel
-#  color:'black'
-#  #backgroundColor:'pink'
-#  text:'hide label'
-#  font:
-#    fontSize:15
-#    fontFamily:'Helvetica Neue'
-#  textAlign:'center'
-#  #width:game.screen.width - 20
-#  width:game.width - 20
-#  height:'auto'
-#  left:10
-#  bottom:0
-#  #borderColor:'white'
-#  #borderWidth:2.0
-#  #borderRadius:5.0
-#  opacity:0.8
-#
-#label1.addEventListener 'touchstart',(e)->
-#  Ti.API.info "lavel1 touchstart"
-#  #label1.hide()
-#  game.zIndex = 2
-#  view1.zIndex = 1
-#
-#label1.addEventListener 'touchend',(e)->
-#  Ti.API.info "lavel1 touchend"
-#  game.zIndex = 1
-#  view1.zIndex = 2
-#
-#view1.addEventListener 'touchstart',(e)->
-#  Ti.API.info "view1 touchstart"
-#  #label1.show()
-#
-#view1.add label1
-#win.add view1
+view1 = Ti.UI.createView
+  backgroundColor:'brown'
+  #width:game.screen.width
+  width:game.width
+  height:50
+  bottom:0
+  borderColor:'white'
+  borderWidth:2.0
+  opacity:0.8
+
+label1 = Ti.UI.createLabel
+  color:'black'
+  #backgroundColor:'pink'
+  text:'hide label'
+  font:
+    fontSize:15
+    fontFamily:'Helvetica Neue'
+  textAlign:'center'
+  #width:game.screen.width - 20
+  width:game.width - 20
+  height:'auto'
+  left:10
+  bottom:0
+  #borderColor:'white'
+  #borderWidth:2.0
+  #borderRadius:5.0
+  opacity:0.8
+
+label1.addEventListener 'touchstart',(e)->
+  Ti.API.info "lavel1 touchstart"
+  #label1.hide()
+  game.zIndex = 2
+  view1.zIndex = 1
+  game.pushScene scene
+
+label1.addEventListener 'touchend',(e)->
+  Ti.API.info "lavel1 touchend"
+  game.zIndex = 1
+  view1.zIndex = 2
+  #game.pushScene scene
+
+view1.addEventListener 'touchstart',(e)->
+  Ti.API.info "view1 touchstart"
+  #label1.show()
+
+view1.add label1
+win.add view1
 
 win.open
   fullscreen:true
