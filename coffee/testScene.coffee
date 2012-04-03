@@ -3,7 +3,7 @@ exports.testScene = (_game)->
   self = quicktigame2d.createScene()
   self.init = ->
   self.addEventListener 'activated',(e)->
-    Ti.API.info "fieldScene activated"
+    Ti.API.info "testScene activated"
     self.color 1, 0, 0 
     #self.onSceneTransform()
     self.logo = quicktigame2d.createSprite
@@ -13,7 +13,7 @@ exports.testScene = (_game)->
     self.add self.logo
     self.onLogoTransform()
   self.addEventListener 'enterframe',(e)->
-    #Ti.API.info "fieldScene enterframed"
+    #Ti.API.info "testScene enterframed"
 
   self.onLogoTransform = ->
     self.logoTransform = quicktigame2d.createTransform()

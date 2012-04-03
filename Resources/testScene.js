@@ -4,7 +4,7 @@ exports.testScene = function(_game) {
   self = quicktigame2d.createScene();
   self.init = function() {};
   self.addEventListener('activated', function(e) {
-    Ti.API.info("fieldScene activated");
+    Ti.API.info("testScene activated");
     self.color(1, 0, 0);
     self.logo = quicktigame2d.createSprite({
       image: 'graphics/unused/a.png'
