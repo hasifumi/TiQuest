@@ -14,6 +14,7 @@
     <statusbar-hidden>false</statusbar-hidden>
     <fullscreen>false</fullscreen>
     <navbar-hidden>false</navbar-hidden>
+    <sdk-version>1.8.1</sdk-version>
     <analytics>true</analytics>
 <guid>aeddbc7a-76fb-4f6e-baa2-28e966feb423</guid>
   <iphone>
