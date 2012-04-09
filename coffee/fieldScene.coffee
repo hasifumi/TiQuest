@@ -3,39 +3,6 @@ exports.fieldScene = (_game)->
   self = quicktigame2d.createScene()
   self.init = ->
   map = ""
-  self.addEventListener 'activated',(e)->
-    Ti.API.info "fieldScene activated"
-    _game.addEventListener 'touchstart',(e)->
-      Ti.API.info "fieldScene touchstart"
-      Ti.API.info "e.x="+e.x+",e.y="+e.y
-      pad.check e.x, e.y, _game
-    _game.addEventListener 'touchmove',(e)->
-      pad.check e.x, e.y, _game
-    _game.addEventListener 'touchend',(e)->
-      pad.clear()
-
-  self.enterframe = ->
-    _game.frame++
-    self.updatePad()
-    if player.isMoving is false
-      doorTest = map.isDoor player.x, player.y
-      if doorTest
-        if mapjson.doors[doorTest - 1].toMapfile?
-          clearMaps maps
-          maps = []
-          updateMaps mapjson.doors[doorTest - 1].toMapfile, maps, mapjson
-          map = maps[0]
-
-  #self.addEventListener 'enterframe',self.enterframe()
-    
-  self.addEventListener 'deactivated',(e)->
-    Ti.API.info "fieldScene deactivated"
-    _game.removeEventListener 'touchstart',(e)->
-      pad.check e.x, e.y, _game
-    _game.removeEventListener 'touchmove',(e)->
-      pad.check e.x, e.y, _game
-    _game.removeEventListener 'touchend',(e)->
-      pad.clear()
 
   maps = []
   mapjson = ""
@@ -158,5 +125,40 @@ exports.fieldScene = (_game)->
           else if 0 >= nextMapY and nextMapY >= -map.height + _game.screen.height
               map.vy = vy
               player.isMoving = true
+
+  self.enterframe = ->
+    _game.frame++
+    self.updatePad()
+    if player.isMoving is false
+      doorTest = map.isDoor player.x, player.y
+      if doorTest
+        if mapjson.doors[doorTest - 1].toMapfile?
+          clearMaps maps
+          maps = []
+          updateMaps mapjson.doors[doorTest - 1].toMapfile, maps, mapjson
+          map = maps[0]
+
+  self.addEventListener 'activated',(e)->
+    Ti.API.info "fieldScene activated"
+    _game.addEventListener 'touchstart',(e)->
+      #Ti.API.info "fieldScene touchstart"
+      #Ti.API.info "e.x="+e.x+",e.y="+e.y
+      pad.check e.x, e.y, _game
+    _game.addEventListener 'touchmove',(e)->
+      pad.check e.x, e.y, _game
+    _game.addEventListener 'touchend',(e)->
+      pad.clear()
+    _game.addEventListener 'enterframe',(e)->
+      self.enterframe()
+  #self.addEventListener 'enterframe', self.enterframe()
+    
+  self.addEventListener 'deactivated',(e)->
+    Ti.API.info "fieldScene deactivated"
+    _game.removeEventListener 'touchstart',(e)->
+      pad.check e.x, e.y, _game
+    _game.removeEventListener 'touchmove',(e)->
+      pad.check e.x, e.y, _game
+    _game.removeEventListener 'touchend',(e)->
+      pad.clear()
 
   self

@@ -4,48 +4,6 @@ exports.fieldScene = function(_game) {
   self = quicktigame2d.createScene();
   self.init = function() {};
   map = "";
-  self.addEventListener('activated', function(e) {
-    Ti.API.info("fieldScene activated");
-    _game.addEventListener('touchstart', function(e) {
-      Ti.API.info("fieldScene touchstart");
-      Ti.API.info("e.x=" + e.x + ",e.y=" + e.y);
-      return pad.check(e.x, e.y, _game);
-    });
-    _game.addEventListener('touchmove', function(e) {
-      return pad.check(e.x, e.y, _game);
-    });
-    return _game.addEventListener('touchend', function(e) {
-      return pad.clear();
-    });
-  });
-  self.enterframe = function() {
-    var doorTest, maps;
-    _game.frame++;
-    self.updatePad();
-    if (player.isMoving === false) {
-      doorTest = map.isDoor(player.x, player.y);
-      if (doorTest) {
-        if (mapjson.doors[doorTest - 1].toMapfile != null) {
-          clearMaps(maps);
-          maps = [];
-          updateMaps(mapjson.doors[doorTest - 1].toMapfile, maps, mapjson);
-          return map = maps[0];
-        }
-      }
-    }
-  };
-  self.addEventListener('deactivated', function(e) {
-    Ti.API.info("fieldScene deactivated");
-    _game.removeEventListener('touchstart', function(e) {
-      return pad.check(e.x, e.y, _game);
-    });
-    _game.removeEventListener('touchmove', function(e) {
-      return pad.check(e.x, e.y, _game);
-    });
-    return _game.removeEventListener('touchend', function(e) {
-      return pad.clear();
-    });
-  });
   maps = [];
   mapjson = "";
   Map = require('map').Map;
@@ -178,5 +136,48 @@ exports.fieldScene = function(_game) {
       }
     }
   };
+  self.enterframe = function() {
+    var doorTest;
+    _game.frame++;
+    self.updatePad();
+    if (player.isMoving === false) {
+      doorTest = map.isDoor(player.x, player.y);
+      if (doorTest) {
+        if (mapjson.doors[doorTest - 1].toMapfile != null) {
+          clearMaps(maps);
+          maps = [];
+          updateMaps(mapjson.doors[doorTest - 1].toMapfile, maps, mapjson);
+          return map = maps[0];
+        }
+      }
+    }
+  };
+  self.addEventListener('activated', function(e) {
+    Ti.API.info("fieldScene activated");
+    _game.addEventListener('touchstart', function(e) {
+      return pad.check(e.x, e.y, _game);
+    });
+    _game.addEventListener('touchmove', function(e) {
+      return pad.check(e.x, e.y, _game);
+    });
+    _game.addEventListener('touchend', function(e) {
+      return pad.clear();
+    });
+    return _game.addEventListener('enterframe', function(e) {
+      return self.enterframe();
+    });
+  });
+  self.addEventListener('deactivated', function(e) {
+    Ti.API.info("fieldScene deactivated");
+    _game.removeEventListener('touchstart', function(e) {
+      return pad.check(e.x, e.y, _game);
+    });
+    _game.removeEventListener('touchmove', function(e) {
+      return pad.check(e.x, e.y, _game);
+    });
+    return _game.removeEventListener('touchend', function(e) {
+      return pad.clear();
+    });
+  });
   return self;
 };
