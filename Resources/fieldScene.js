@@ -66,6 +66,8 @@ exports.fieldScene = function(_game) {
       }
       player.animate(player.direction * 3, 2, 250, -1);
       if (((player.vx !== 0) && (Math.abs(player.old_x - player.x) % player.width === 0)) || ((player.vy !== 0) && (Math.abs(player.old_y - player.y) % player.height === 0)) || ((map.vx !== 0) && (Math.abs(map.old_x - map.x) % player.width === 0)) || ((map.vy !== 0) && (Math.abs(map.old_y - map.y) % player.height === 0))) {
+        Ti.API.info("player.x=" + player.x + ",y=" + player.y);
+        Ti.API.info("map.x=" + map.x + ",y=" + map.y);
         player.isMoving = false;
         return player.walk = 1;
       }
@@ -141,7 +143,7 @@ exports.fieldScene = function(_game) {
     _game.frame++;
     self.updatePad();
     if (player.isMoving === false) {
-      doorTest = map.isDoor(player.x, player.y);
+      doorTest = map.isDoor(player.x - map.x, player.y - map.y);
       if (doorTest) {
         if (mapjson.doors[doorTest - 1].toMapfile != null) {
           clearMaps(maps);

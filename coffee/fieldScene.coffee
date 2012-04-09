@@ -67,6 +67,8 @@ exports.fieldScene = (_game)->
         i.y = map.y
       player.animate player.direction*3, 2, 250, -1
       if ((player.vx isnt 0) and (Math.abs(player.old_x - player.x) % player.width is 0)) or ((player.vy isnt 0) and (Math.abs(player.old_y - player.y) % player.height is 0)) or ((map.vx isnt 0) and (Math.abs(map.old_x - map.x) % player.width is 0)) or ((map.vy isnt 0) and (Math.abs(map.old_y - map.y ) % player.height is 0))
+        Ti.API.info "player.x="+player.x+",y="+player.y
+        Ti.API.info "map.x="+map.x+",y="+map.y
         player.isMoving = false
         player.walk = 1
     else
@@ -130,7 +132,7 @@ exports.fieldScene = (_game)->
     _game.frame++
     self.updatePad()
     if player.isMoving is false
-      doorTest = map.isDoor player.x, player.y
+      doorTest = map.isDoor (player.x - map.x), (player.y - map.y)
       if doorTest
         if mapjson.doors[doorTest - 1].toMapfile?
           clearMaps maps
