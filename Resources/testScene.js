@@ -1,3 +1,4 @@
+var testFunc;
 exports.testScene = function(_game) {
   var quicktigame2d, self;
   quicktigame2d = require('com.googlecode.quicktigame2d');
@@ -14,7 +15,9 @@ exports.testScene = function(_game) {
     self.add(self.logo);
     return self.onLogoTransform();
   });
-  self.addEventListener('enterframe', function(e) {});
+  self.addEventListener('enterframe', function(e) {
+    return testFunc();
+  });
   self.onLogoTransform = function() {
     self.logoTransform = quicktigame2d.createTransform();
     self.logoTransform.duration = 3000;
@@ -29,4 +32,7 @@ exports.testScene = function(_game) {
     return self.transform(self.sceneTransform);
   };
   return self;
+};
+testFunc = function() {
+  return Ti.API.info("testFunc called");
 };

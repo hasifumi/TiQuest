@@ -14,6 +14,7 @@ exports.testScene = (_game)->
     self.onLogoTransform()
   self.addEventListener 'enterframe',(e)->
     #Ti.API.info "testScene enterframed"
+    testFunc()
 
   self.onLogoTransform = ->
     self.logoTransform = quicktigame2d.createTransform()
@@ -29,3 +30,6 @@ exports.testScene = (_game)->
     self.transform self.sceneTransform
 
   self
+
+testFunc = ->
+  Ti.API.info "testFunc called"
