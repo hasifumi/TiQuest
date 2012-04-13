@@ -1,35 +1,68 @@
+
+quicktigame2d = require 'com.googlecode.quicktigame2d'
+self = quicktigame2d.createScene()
+
+#self.init = ->
+map = ""
+maps = []
+mapjson = ""
+Map = require('map').Map
+
+clearMaps = (_maps)->
+  for i in _maps
+    self.remove i
+    i = null
+  _maps = []
+
+updateMaps = (_mapfile, _maps, _mapjson)->
+  setTimeout ->
+    Ti.API.debug "Sleep 3 sec."
+  , 3000
+  mapfile = Ti.Filesystem.getFile(Titanium.Filesystem.resourcesDirectory, _mapfile)
+  mapjson = JSON.parse mapfile.read().toString()
+  _mapjson = mapjson
+  for i in mapjson.layers
+    if mapjson.layers[_i].type is 'tilelayer'
+      _map =  new Map _mapfile, _i
+      _maps.push _map
+      _maps[_i].z = _i
+      self.add _maps[_i]
+      if _i is 0
+        _maps[_i].loadCollisionData()
+        _maps[_i].loadDoorData()
+
 exports.fieldScene = (_game)->
-  quicktigame2d = require 'com.googlecode.quicktigame2d'
-  self = quicktigame2d.createScene()
-  self.init = ->
-  map = ""
+  #quicktigame2d = require 'com.googlecode.quicktigame2d'
+  #self = quicktigame2d.createScene()
 
-  maps = []
-  mapjson = ""
-  Map = require('map').Map
+  #self.init = ->
+  #map = ""
+  #maps = []
+  #mapjson = ""
+  #Map = require('map').Map
 
-  clearMaps = (_maps)->
-    for i in _maps
-      self.remove i
-      i = null
-    _maps = []
+  #clearMaps = (_maps)->
+  #  for i in _maps
+  #    self.remove i
+  #    i = null
+  #  _maps = []
 
-  updateMaps = (_mapfile, _maps, _mapjson)->
-    setTimeout ->
-      Ti.API.debug "Sleep 3 sec."
-    , 3000
-    mapfile = Ti.Filesystem.getFile(Titanium.Filesystem.resourcesDirectory, _mapfile)
-    mapjson = JSON.parse mapfile.read().toString()
-    _mapjson = mapjson
-    for i in mapjson.layers
-      if mapjson.layers[_i].type is 'tilelayer'
-        _map =  new Map _mapfile, _i
-        _maps.push _map
-        _maps[_i].z = _i
-        self.add _maps[_i]
-        if _i is 0
-          _maps[_i].loadCollisionData()
-          _maps[_i].loadDoorData()
+  #updateMaps = (_mapfile, _maps, _mapjson)->
+  #  setTimeout ->
+  #    Ti.API.debug "Sleep 3 sec."
+  #  , 3000
+  #  mapfile = Ti.Filesystem.getFile(Titanium.Filesystem.resourcesDirectory, _mapfile)
+  #  mapjson = JSON.parse mapfile.read().toString()
+  #  _mapjson = mapjson
+  #  for i in mapjson.layers
+  #    if mapjson.layers[_i].type is 'tilelayer'
+  #      _map =  new Map _mapfile, _i
+  #      _maps.push _map
+  #      _maps[_i].z = _i
+  #      self.add _maps[_i]
+  #      if _i is 0
+  #        _maps[_i].loadCollisionData()
+  #        _maps[_i].loadDoorData()
 
   updateMaps 'graphics/map/map001.json', maps, mapjson
   map = maps[0]
@@ -67,8 +100,6 @@ exports.fieldScene = (_game)->
         i.y = map.y
       player.animate player.direction*3, 2, 250, -1
       if ((player.vx isnt 0) and (Math.abs(player.old_x - player.x) % player.width is 0)) or ((player.vy isnt 0) and (Math.abs(player.old_y - player.y) % player.height is 0)) or ((map.vx isnt 0) and (Math.abs(map.old_x - map.x) % player.width is 0)) or ((map.vy isnt 0) and (Math.abs(map.old_y - map.y ) % player.height is 0))
-        Ti.API.info "player.x="+player.x+",y="+player.y
-        Ti.API.info "map.x="+map.x+",y="+map.y
         player.isMoving = false
         player.walk = 1
     else

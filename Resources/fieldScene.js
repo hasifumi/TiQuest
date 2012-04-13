@@ -1,37 +1,37 @@
+var Map, clearMaps, map, mapjson, maps, quicktigame2d, self, updateMaps;
+quicktigame2d = require('com.googlecode.quicktigame2d');
+self = quicktigame2d.createScene();
+map = "";
+maps = [];
+mapjson = "";
+Map = require('map').Map;
+clearMaps = function(_maps) {
+  var i, _i, _len;
+  for (_i = 0, _len = _maps.length; _i < _len; _i++) {
+    i = _maps[_i];
+    self.remove(i);
+    i = null;
+  }
+  return _maps = [];
+};
+updateMaps = function(_mapfile, _maps, _mapjson) {
+  var i, mapfile, _i, _len, _map, _ref, _results;
+  setTimeout(function() {
+    return Ti.API.debug("Sleep 3 sec.");
+  }, 3000);
+  mapfile = Ti.Filesystem.getFile(Titanium.Filesystem.resourcesDirectory, _mapfile);
+  mapjson = JSON.parse(mapfile.read().toString());
+  _mapjson = mapjson;
+  _ref = mapjson.layers;
+  _results = [];
+  for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+    i = _ref[_i];
+    _results.push(mapjson.layers[_i].type === 'tilelayer' ? (_map = new Map(_mapfile, _i), _maps.push(_map), _maps[_i].z = _i, self.add(_maps[_i]), _i === 0 ? (_maps[_i].loadCollisionData(), _maps[_i].loadDoorData()) : void 0) : void 0);
+  }
+  return _results;
+};
 exports.fieldScene = function(_game) {
-  var Map, Pad, Player, WINDOW_SCALE_FACTOR_X, WINDOW_SCALE_FACTOR_Y, clearMaps, map, mapjson, maps, nextMapX, nextMapY, nextPlayerX, nextPlayerY, pad, player, quicktigame2d, self, updateMaps;
-  quicktigame2d = require('com.googlecode.quicktigame2d');
-  self = quicktigame2d.createScene();
-  self.init = function() {};
-  map = "";
-  maps = [];
-  mapjson = "";
-  Map = require('map').Map;
-  clearMaps = function(_maps) {
-    var i, _i, _len;
-    for (_i = 0, _len = _maps.length; _i < _len; _i++) {
-      i = _maps[_i];
-      self.remove(i);
-      i = null;
-    }
-    return _maps = [];
-  };
-  updateMaps = function(_mapfile, _maps, _mapjson) {
-    var i, mapfile, _i, _len, _map, _ref, _results;
-    setTimeout(function() {
-      return Ti.API.debug("Sleep 3 sec.");
-    }, 3000);
-    mapfile = Ti.Filesystem.getFile(Titanium.Filesystem.resourcesDirectory, _mapfile);
-    mapjson = JSON.parse(mapfile.read().toString());
-    _mapjson = mapjson;
-    _ref = mapjson.layers;
-    _results = [];
-    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      i = _ref[_i];
-      _results.push(mapjson.layers[_i].type === 'tilelayer' ? (_map = new Map(_mapfile, _i), _maps.push(_map), _maps[_i].z = _i, self.add(_maps[_i]), _i === 0 ? (_maps[_i].loadCollisionData(), _maps[_i].loadDoorData()) : void 0) : void 0);
-    }
-    return _results;
-  };
+  var Pad, Player, WINDOW_SCALE_FACTOR_X, WINDOW_SCALE_FACTOR_Y, nextMapX, nextMapY, nextPlayerX, nextPlayerY, pad, player;
   updateMaps('graphics/map/map001.json', maps, mapjson);
   map = maps[0];
   Player = require('player').Player;
@@ -66,8 +66,6 @@ exports.fieldScene = function(_game) {
       }
       player.animate(player.direction * 3, 2, 250, -1);
       if (((player.vx !== 0) && (Math.abs(player.old_x - player.x) % player.width === 0)) || ((player.vy !== 0) && (Math.abs(player.old_y - player.y) % player.height === 0)) || ((map.vx !== 0) && (Math.abs(map.old_x - map.x) % player.width === 0)) || ((map.vy !== 0) && (Math.abs(map.old_y - map.y) % player.height === 0))) {
-        Ti.API.info("player.x=" + player.x + ",y=" + player.y);
-        Ti.API.info("map.x=" + map.x + ",y=" + map.y);
         player.isMoving = false;
         return player.walk = 1;
       }

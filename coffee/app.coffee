@@ -21,7 +21,7 @@
   TestScene = require('testScene').testScene
   testScene = new TestScene(game)
 
-  FieldScene = require('fieldscene').fieldScene
+  FieldScene = require('fieldScene').fieldScene
   fieldScene = new FieldScene(game)
 
   #scene = quicktigame2d.createScene()

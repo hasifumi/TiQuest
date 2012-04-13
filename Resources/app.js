@@ -18,7 +18,7 @@
   game.frame = 0;
   TestScene = require('testScene').testScene;
   testScene = new TestScene(game);
-  FieldScene = require('fieldscene').fieldScene;
+  FieldScene = require('fieldScene').fieldScene;
   fieldScene = new FieldScene(game);
   game.addEventListener('onload', function(e) {
     var WINDOW_SCALE_FACTOR_X, WINDOW_SCALE_FACTOR_Y, screenScale;
