@@ -41,8 +41,8 @@ pad.y = 360
 
 touchstart = (_e, _gm)->
   (_e)->
-    #Ti.API.info "fieldScene touchstart function"
-    #Ti.API.info "_e.x="+_e.x+",_e.y="+_e.y
+    Ti.API.info "fieldScene touchstart function"
+    Ti.API.info "_e.x="+_e.x+",_e.y="+_e.y
     pad.check _e.x, _e.y, _gm
 
 touchend = ->
@@ -157,7 +157,7 @@ exports.fieldScene = (_game)->
     _game.addEventListener 'touchstart', touchstart(e, _game)
     _game.addEventListener 'touchmove', touchstart(e, _game)
     _game.addEventListener 'touchend', touchend()
-    _game.addEventListener 'enterframe1',(e)->
+    _game.addEventListener 'enterframe',(e)->
       self.enterframe()
     
   self.addEventListener 'deactivated',(e)->

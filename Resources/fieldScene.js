@@ -38,6 +38,8 @@ pad.color(1, 0, 0);
 pad.y = 360;
 touchstart = function(_e, _gm) {
   return function(_e) {
+    Ti.API.info("fieldScene touchstart function");
+    Ti.API.info("_e.x=" + _e.x + ",_e.y=" + _e.y);
     return pad.check(_e.x, _e.y, _gm);
   };
 };
@@ -167,7 +169,7 @@ exports.fieldScene = function(_game) {
     _game.addEventListener('touchstart', touchstart(e, _game));
     _game.addEventListener('touchmove', touchstart(e, _game));
     _game.addEventListener('touchend', touchend());
-    return _game.addEventListener('enterframe1', function(e) {
+    return _game.addEventListener('enterframe', function(e) {
       return self.enterframe();
     });
   });
