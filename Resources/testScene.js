@@ -1,37 +1,37 @@
 var testFunc;
 exports.testScene = function(_game) {
-  var quicktigame2d, self;
+  var quicktigame2d, testscene;
   quicktigame2d = require('com.googlecode.quicktigame2d');
-  self = quicktigame2d.createScene();
-  self.init = function() {};
-  self.addEventListener('activated', function(e) {
+  testscene = quicktigame2d.createScene();
+  testscene.init = function() {};
+  testscene.addEventListener('activated', function(e) {
     Ti.API.info("testScene activated");
-    self.color(1, 0, 0);
-    self.logo = quicktigame2d.createSprite({
+    testscene.color(1, 0, 0);
+    testscene.logo = quicktigame2d.createSprite({
       image: 'graphics/unused/a.png'
     });
-    self.logo.x = (_game.width * 0.5) - (self.logo.width * 0.5);
-    self.logo.y = (_game.height * 0.5) - (self.logo.height * 0.5);
-    self.add(self.logo);
-    return self.onLogoTransform();
+    testscene.logo.x = (_game.width * 0.5) - (testscene.logo.width * 0.5);
+    testscene.logo.y = (_game.height * 0.5) - (testscene.logo.height * 0.5);
+    testscene.add(testscene.logo);
+    return testscene.onLogoTransform();
   });
-  self.addEventListener('enterframe', function(e) {
+  testscene.addEventListener('enterframe', function(e) {
     return testFunc();
   });
-  self.onLogoTransform = function() {
-    self.logoTransform = quicktigame2d.createTransform();
-    self.logoTransform.duration = 3000;
-    self.logoTransform.alpha = 1;
-    self.logoTransform.easing = quicktigame2d.ANIMATION_CURVE_CUBIC_IN;
-    return self.logo.transform(self.logoTransform);
+  testscene.onLogoTransform = function() {
+    testscene.logoTransform = quicktigame2d.createTransform();
+    testscene.logoTransform.duration = 3000;
+    testscene.logoTransform.alpha = 1;
+    testscene.logoTransform.easing = quicktigame2d.ANIMATION_CURVE_CUBIC_IN;
+    return testscene.logo.transform(testscene.logoTransform);
   };
-  self.onSceneTransform = function() {
-    self.sceneTransform = quicktigame2d.createTransform();
-    self.sceneTransform.duration = 3000;
-    self.sceneTransform.color(0, 0, 1);
-    return self.transform(self.sceneTransform);
+  testscene.onSceneTransform = function() {
+    testscene.sceneTransform = quicktigame2d.createTransform();
+    testscene.sceneTransform.duration = 3000;
+    testscene.sceneTransform.color(0, 0, 1);
+    return testscene.transform(testscene.sceneTransform);
   };
-  return self;
+  return testscene;
 };
 testFunc = function() {
   return Ti.API.info("testFunc called");

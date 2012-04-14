@@ -31,49 +31,28 @@ updateMaps = (_mapfile, _maps, _mapjson)->
         _maps[_i].loadCollisionData()
         _maps[_i].loadDoorData()
 
+Player = require('player').Player
+player = new Player()
+
+Pad = require('pad').Pad
+pad = new Pad()
+pad.color 1, 0, 0
+pad.y = 360
+
+touchstart = (_e, _gm)->
+  (_e)->
+    #Ti.API.info "fieldScene touchstart function"
+    #Ti.API.info "_e.x="+_e.x+",_e.y="+_e.y
+    pad.check _e.x, _e.y, _gm
+
+touchend = ->
+  ->
+    pad.clear()
+
 exports.fieldScene = (_game)->
-  #quicktigame2d = require 'com.googlecode.quicktigame2d'
-  #self = quicktigame2d.createScene()
-
-  #self.init = ->
-  #map = ""
-  #maps = []
-  #mapjson = ""
-  #Map = require('map').Map
-
-  #clearMaps = (_maps)->
-  #  for i in _maps
-  #    self.remove i
-  #    i = null
-  #  _maps = []
-
-  #updateMaps = (_mapfile, _maps, _mapjson)->
-  #  setTimeout ->
-  #    Ti.API.debug "Sleep 3 sec."
-  #  , 3000
-  #  mapfile = Ti.Filesystem.getFile(Titanium.Filesystem.resourcesDirectory, _mapfile)
-  #  mapjson = JSON.parse mapfile.read().toString()
-  #  _mapjson = mapjson
-  #  for i in mapjson.layers
-  #    if mapjson.layers[_i].type is 'tilelayer'
-  #      _map =  new Map _mapfile, _i
-  #      _maps.push _map
-  #      _maps[_i].z = _i
-  #      self.add _maps[_i]
-  #      if _i is 0
-  #        _maps[_i].loadCollisionData()
-  #        _maps[_i].loadDoorData()
 
   updateMaps 'graphics/map/map001.json', maps, mapjson
   map = maps[0]
-
-  Player = require('player').Player
-  player = new Player()
-
-  Pad = require('pad').Pad
-  pad = new Pad()
-  pad.color 1, 0, 0
-  pad.y = 360
 
   player.z = 10
   pad.z = 20
@@ -173,25 +152,18 @@ exports.fieldScene = (_game)->
 
   self.addEventListener 'activated',(e)->
     Ti.API.info "fieldScene activated"
-    _game.addEventListener 'touchstart',(e)->
-      #Ti.API.info "fieldScene touchstart"
-      #Ti.API.info "e.x="+e.x+",e.y="+e.y
-      pad.check e.x, e.y, _game
-    _game.addEventListener 'touchmove',(e)->
-      pad.check e.x, e.y, _game
-    _game.addEventListener 'touchend',(e)->
-      pad.clear()
-    _game.addEventListener 'enterframe',(e)->
+    #_game.addEventListener 'touchstart',(e)->
+    #  pad.check e.x, e.y, _game
+    _game.addEventListener 'touchstart', touchstart(e, _game)
+    _game.addEventListener 'touchmove', touchstart(e, _game)
+    _game.addEventListener 'touchend', touchend()
+    _game.addEventListener 'enterframe1',(e)->
       self.enterframe()
-  #self.addEventListener 'enterframe', self.enterframe()
     
   self.addEventListener 'deactivated',(e)->
     Ti.API.info "fieldScene deactivated"
-    _game.removeEventListener 'touchstart',(e)->
-      pad.check e.x, e.y, _game
-    _game.removeEventListener 'touchmove',(e)->
-      pad.check e.x, e.y, _game
-    _game.removeEventListener 'touchend',(e)->
-      pad.clear()
+    _game.removeEventListener 'touchstart', touchstart(e, _game)
+    _game.removeEventListener 'touchmove', touchstart(e, _game)
+    _game.removeEventListener 'touchend', touchend()
 
   self

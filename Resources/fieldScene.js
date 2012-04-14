@@ -1,4 +1,4 @@
-var Map, clearMaps, map, mapjson, maps, quicktigame2d, self, updateMaps;
+var Map, Pad, Player, clearMaps, map, mapjson, maps, pad, player, quicktigame2d, self, touchend, touchstart, updateMaps;
 quicktigame2d = require('com.googlecode.quicktigame2d');
 self = quicktigame2d.createScene();
 map = "";
@@ -30,16 +30,26 @@ updateMaps = function(_mapfile, _maps, _mapjson) {
   }
   return _results;
 };
+Player = require('player').Player;
+player = new Player();
+Pad = require('pad').Pad;
+pad = new Pad();
+pad.color(1, 0, 0);
+pad.y = 360;
+touchstart = function(_e, _gm) {
+  return function(_e) {
+    return pad.check(_e.x, _e.y, _gm);
+  };
+};
+touchend = function() {
+  return function() {
+    return pad.clear();
+  };
+};
 exports.fieldScene = function(_game) {
-  var Pad, Player, WINDOW_SCALE_FACTOR_X, WINDOW_SCALE_FACTOR_Y, nextMapX, nextMapY, nextPlayerX, nextPlayerY, pad, player;
+  var WINDOW_SCALE_FACTOR_X, WINDOW_SCALE_FACTOR_Y, nextMapX, nextMapY, nextPlayerX, nextPlayerY;
   updateMaps('graphics/map/map001.json', maps, mapjson);
   map = maps[0];
-  Player = require('player').Player;
-  player = new Player();
-  Pad = require('pad').Pad;
-  pad = new Pad();
-  pad.color(1, 0, 0);
-  pad.y = 360;
   player.z = 10;
   pad.z = 20;
   self.add(player);
@@ -154,30 +164,18 @@ exports.fieldScene = function(_game) {
   };
   self.addEventListener('activated', function(e) {
     Ti.API.info("fieldScene activated");
-    _game.addEventListener('touchstart', function(e) {
-      return pad.check(e.x, e.y, _game);
-    });
-    _game.addEventListener('touchmove', function(e) {
-      return pad.check(e.x, e.y, _game);
-    });
-    _game.addEventListener('touchend', function(e) {
-      return pad.clear();
-    });
-    return _game.addEventListener('enterframe', function(e) {
+    _game.addEventListener('touchstart', touchstart(e, _game));
+    _game.addEventListener('touchmove', touchstart(e, _game));
+    _game.addEventListener('touchend', touchend());
+    return _game.addEventListener('enterframe1', function(e) {
       return self.enterframe();
     });
   });
   self.addEventListener('deactivated', function(e) {
     Ti.API.info("fieldScene deactivated");
-    _game.removeEventListener('touchstart', function(e) {
-      return pad.check(e.x, e.y, _game);
-    });
-    _game.removeEventListener('touchmove', function(e) {
-      return pad.check(e.x, e.y, _game);
-    });
-    return _game.removeEventListener('touchend', function(e) {
-      return pad.clear();
-    });
+    _game.removeEventListener('touchstart', touchstart(e, _game));
+    _game.removeEventListener('touchmove', touchstart(e, _game));
+    return _game.removeEventListener('touchend', touchend());
   });
   return self;
 };
